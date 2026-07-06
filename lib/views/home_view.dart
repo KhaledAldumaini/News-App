@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_cloud_app/widgets/categories_list_view.dart';
-import 'package:news_cloud_app/widgets/category_card.dart';
-import 'package:news_cloud_app/widgets/news_tile.dart';
 import 'package:news_cloud_app/widgets/news_tiles_list_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -24,13 +22,12 @@ class HomeView extends StatelessWidget {
       //cards
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            CategoriesListView(),
-            SizedBox(
-              height: 30,
-            ),
-            Expanded(child: NewsTilesListView()),
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(child: CategoriesListView()),
+            SliverToBoxAdapter(child: SizedBox(height: 30)),
+            NewsTilesListView()
           ],
         ),
       )

@@ -33,12 +33,8 @@ class NewsTilesListView extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: BouncingScrollPhysics(),
-      itemCount: newsTiles.length,
-      itemBuilder: (context, index) {
-        return NewsTile(newsTile: newsTiles[index]);
-      },
-    );
+    return SliverList(delegate: SliverChildBuilderDelegate(childCount: 2,(context, index) {
+      return NewsTile(newsTile: newsTiles[index]);
+    }));
   }
 }
